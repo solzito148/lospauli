@@ -7,7 +7,7 @@ export const products: Product[] = [
     description: "Dulce de leche artesanal entre dos galletas bañadas en chocolate.",
     price: 850,
     category: "alfajores",
-    image: "/products/alfajor-clasico.svg",
+    image: "/products/alfajores-salvatore.png",
     unit: "unidad",
   },
   {
@@ -16,7 +16,7 @@ export const products: Product[] = [
     description: "Chocolate semiamargo, dulce de leche y cobertura intensa.",
     price: 920,
     category: "alfajores",
-    image: "/products/alfajor-negro.svg",
+    image: "/products/alfajores-salvatore.png",
     unit: "unidad",
   },
   {
@@ -25,7 +25,7 @@ export const products: Product[] = [
     description: "Galletas de maicena, dulce de leche y coco rallado.",
     price: 780,
     category: "alfajores",
-    image: "/products/alfajor-maicena.svg",
+    image: "/products/alfajores-salvatore.png",
     unit: "unidad",
   },
   {
@@ -34,7 +34,7 @@ export const products: Product[] = [
     description: "Triple capa de dulce de leche con baño de chocolate.",
     price: 1100,
     category: "alfajores",
-    image: "/products/alfajor-triple.svg",
+    image: "/products/alfajores-salvatore.png",
     unit: "unidad",
   },
   {
