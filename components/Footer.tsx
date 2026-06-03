@@ -25,24 +25,6 @@ export function Footer() {
                   WhatsApp
                 </a>
               </li>
-              <li>
-                <a
-                  href="mailto:contacto@salvatore.com.ar"
-                  className="transition-colors hover:text-blanco"
-                >
-                  contacto@salvatore.com.ar
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-colors hover:text-blanco"
-                >
-                  Instagram
-                </a>
-              </li>
             </ul>
           </div>
 
@@ -56,8 +38,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-blanco/10 pt-8 text-xs text-blanco/50 sm:flex-row">
-          <p>© {new Date().getFullYear()} SALVATORE. Todos los derechos reservados.</p>
+        <div className="mt-10 flex justify-center border-t border-blanco/10 pt-8 text-xs text-blanco/50">
           <a
             href="https://www.argentina.gob.ar/produccion/defensadelconsumidor"
             target="_blank"

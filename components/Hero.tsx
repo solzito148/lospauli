@@ -1,54 +1,48 @@
+import Image from "next/image";
 import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-crema">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:py-24">
-        <div className="flex flex-col gap-6">
-          <span className="inline-flex w-fit rounded-full border border-dulce/50 bg-blanco px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-cacao">
-            Pedidos por WhatsApp · Envíos a consultar
-          </span>
+    <section className="relative overflow-hidden">
+      <div className="relative min-h-[85vh] lg:min-h-[90vh]">
+        <Image
+          src="/hero-salvatore.png"
+          alt="Alfajores SALVATORE artesanales con dulce de leche y chocolate"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-chocolate/85 via-chocolate/60 to-chocolate/30" />
 
-          <h1 className="font-serif text-4xl leading-tight text-chocolate sm:text-5xl lg:text-6xl">
-            Alfajores y conitos hechos con dedicación
-          </h1>
+        <div className="relative mx-auto flex min-h-[85vh] max-w-6xl flex-col justify-center px-4 py-20 sm:px-6 lg:min-h-[90vh] lg:py-24">
+          <div className="max-w-xl">
+            <span className="inline-flex w-fit rounded-full border border-blanco/30 bg-blanco/10 px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-blanco backdrop-blur-sm">
+              Pedidos por WhatsApp · Envíos a consultar
+            </span>
 
-          <p className="max-w-lg text-lg leading-relaxed text-cacao/90">
-            Elaboración artesanal con ingredientes seleccionados. El sabor clásico
-            argentino, listo para compartir o regalar.
-          </p>
+            <h1 className="mt-6 font-serif text-4xl leading-tight text-blanco sm:text-5xl lg:text-6xl">
+              Alfajores y conitos hechos con dedicación
+            </h1>
 
-          <div className="flex flex-wrap gap-3">
-            <a
-              href="#alfajores"
-              className="rounded-full bg-chocolate px-6 py-3 text-sm font-medium text-blanco transition-opacity hover:opacity-90"
-            >
-              Ver alfajores
-            </a>
-            <a
-              href="#conitos"
-              className="rounded-full border border-chocolate px-6 py-3 text-sm font-medium text-chocolate transition-colors hover:bg-chocolate hover:text-blanco"
-            >
-              Ver conitos
-            </a>
-          </div>
-        </div>
+            <p className="mt-5 max-w-lg text-lg leading-relaxed text-blanco/85">
+              Elaboración artesanal con ingredientes seleccionados. El sabor clásico
+              argentino, listo para compartir o regalar.
+            </p>
 
-        <div className="relative flex items-center justify-center">
-          <div className="relative aspect-square w-full max-w-md overflow-hidden rounded-3xl bg-gradient-to-br from-dulce/40 to-cacao/20 shadow-lg">
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-8 text-center">
-              <div className="flex gap-4">
-                <div className="flex h-28 w-28 flex-col items-center justify-center rounded-2xl bg-blanco/80 shadow-md">
-                  <span className="text-4xl">🍫</span>
-                  <span className="mt-2 text-xs font-medium text-cacao">Alfajores</span>
-                </div>
-                <div className="flex h-28 w-28 flex-col items-center justify-center rounded-2xl bg-blanco/80 shadow-md">
-                  <span className="text-4xl">🍦</span>
-                  <span className="mt-2 text-xs font-medium text-cacao">Conitos</span>
-                </div>
-              </div>
-              <p className="font-serif text-xl text-chocolate">SALVATORE</p>
-              <p className="text-sm text-cacao">Reemplazá esta imagen con fotos reales de producto</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="#alfajores"
+                className="rounded-full bg-blanco px-6 py-3 text-sm font-medium text-chocolate transition-opacity hover:opacity-90"
+              >
+                Ver alfajores
+              </a>
+              <a
+                href="#conitos"
+                className="rounded-full border border-blanco/60 px-6 py-3 text-sm font-medium text-blanco transition-colors hover:bg-blanco/10"
+              >
+                Ver conitos
+              </a>
             </div>
           </div>
         </div>

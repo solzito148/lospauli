@@ -12,17 +12,20 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const { addItem } = useCart();
+  const isPhoto = !product.image.endsWith(".svg");
 
   const whatsappUrl = buildWhatsAppUrl(buildProductInquiryMessage(product));
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-dulce/30 bg-blanco shadow-sm transition-shadow hover:shadow-md">
-      <div className="relative aspect-square overflow-hidden bg-crema">
+      <div className={`relative overflow-hidden bg-crema ${isPhoto ? "aspect-[4/3]" : "aspect-square"}`}>
         <Image
           src={product.image}
           alt={product.name}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          className={`transition-transform duration-300 group-hover:scale-105 ${
+            isPhoto ? "object-contain p-3" : "object-cover"
+          }`}
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
         />
       </div>
