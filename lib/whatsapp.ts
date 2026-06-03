@@ -1,7 +1,7 @@
 import type { CartItem, Product } from "./types";
 import { formatPrice } from "./format";
 
-const DEFAULT_WHATSAPP_NUMBER = "5491112345678";
+const DEFAULT_WHATSAPP_NUMBER = "5491166306974";
 
 export function getWhatsAppNumber(): string {
   return process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? DEFAULT_WHATSAPP_NUMBER;
