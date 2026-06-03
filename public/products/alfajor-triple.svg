@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" fill="#F5EDE0"/>
+  <ellipse cx="200" cy="230" rx="130" ry="45" fill="#6B4423" opacity="0.15"/>
+  <rect x="100" y="140" width="200" height="40" rx="20" fill="#C4A574"/>
+  <rect x="100" y="175" width="200" height="35" rx="17" fill="#6B4423" opacity="0.6"/>
+  <rect x="100" y="205" width="200" height="40" rx="20" fill="#C4A574"/>
+  <rect x="90" y="235" width="220" height="55" rx="28" fill="#3D2314"/>
+  <text x="200" y="330" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#6B4423">Alfajor Triple</text>
+</svg>

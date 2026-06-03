@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" fill="#F5EDE0"/>
+  <rect x="100" y="140" width="200" height="140" rx="12" fill="#FFFBF7" stroke="#C4A574" stroke-width="2"/>
+  <polygon points="150,200 170,260 130,260" fill="#C4A574"/>
+  <polygon points="200,190 220,260 180,260" fill="#FFFBF7" stroke="#C4A574"/>
+  <polygon points="250,200 270,260 230,260" fill="#4a3728"/>
+  <text x="200" y="320" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#6B4423">Caja Mix x6</text>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" fill="#F5EDE0"/>
+  <polygon points="200,100 260,280 140,280" fill="#C4A574" stroke="#6B4423" stroke-width="2"/>
+  <polygon points="200,120 240,260 160,260" fill="#6B4423"/>
+  <ellipse cx="200" cy="290" rx="70" ry="15" fill="#3D2314" opacity="0.2"/>
+  <text x="200" y="340" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#6B4423">Conito Clásico</text>
+</svg>
