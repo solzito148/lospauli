@@ -2,17 +2,20 @@
 
 import { useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
-import { getProductsByCategory } from "@/lib/products";
-import type { ProductCategory } from "@/lib/types";
+import type { Product, ProductCategory } from "@/lib/types";
 
 const categories: { id: ProductCategory; label: string; sectionId: string }[] = [
   { id: "alfajores", label: "Alfajores", sectionId: "alfajores" },
   { id: "conitos", label: "Conitos", sectionId: "conitos" },
 ];
 
-export function ProductGrid() {
+interface ProductGridProps {
+  products: Product[];
+}
+
+export function ProductGrid({ products }: ProductGridProps) {
   const [activeCategory, setActiveCategory] = useState<ProductCategory>("alfajores");
-  const filteredProducts = getProductsByCategory(activeCategory);
+  const filteredProducts = products.filter((p) => p.category === activeCategory);
 
   return (
     <section id="productos" className="bg-blanco py-16 sm:py-20">

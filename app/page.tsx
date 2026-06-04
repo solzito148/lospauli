@@ -6,14 +6,17 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { HowToOrder } from "@/components/HowToOrder";
 import { ProductGrid } from "@/components/ProductGrid";
+import { getProducts } from "@/lib/products";
 
-export default function Home() {
+export default async function Home() {
+  const products = await getProducts();
+
   return (
     <>
       <Header />
       <main className="flex-1 pb-24">
         <Hero />
-        <ProductGrid />
+        <ProductGrid products={products} />
         <AboutSection />
         <HowToOrder />
         <FAQ />
