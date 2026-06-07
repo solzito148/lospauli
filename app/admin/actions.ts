@@ -11,7 +11,7 @@ import {
   verifyAdminCredentials,
 } from "@/lib/auth";
 import {
-  getProductsFromStore,
+  getMutableProductsFromStore,
   saveProducts,
   uploadProductImage,
 } from "@/lib/github-store";
@@ -21,25 +21,37 @@ import type { Product, ProductCategory } from "@/lib/types";
 const MAX_IMAGE_SIZE = 2 * 1024 * 1024;
 const ALLOWED_IMAGE_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
 
-async function requireAdmin() {
+type ActionResult = { error: string } | void;
+
+async function requireAdmin(): Promise<ActionResult> {
   if (!(await isAdminAuthenticated())) {
-    throw new Error("No autorizado");
+    return { error: "No autorizado." };
   }
 }
 
-function validateImage(file: File) {
+function validateImage(file: File): { error: string } | null {
   if (!ALLOWED_IMAGE_TYPES.has(file.type)) {
-    throw new Error("Formato no permitido. Usá JPG, PNG o WebP.");
+    return { error: "Formato no permitido. Usá JPG, PNG o WebP." };
   }
 
   if (file.size > MAX_IMAGE_SIZE) {
-    throw new Error("La imagen supera el máximo de 2 MB.");
+    return { error: "La imagen supera el máximo de 2 MB." };
   }
+
+  return null;
+}
+
+function getSafeRedirectPath(value: string): string {
+  if (value.startsWith("/admin") && !value.startsWith("/admin/login")) {
+    return value;
+  }
+  return "/admin";
 }
 
 export async function loginAction(formData: FormData) {
   const username = String(formData.get("username") ?? "").trim();
   const password = String(formData.get("password") ?? "");
+  const redirectTo = getSafeRedirectPath(String(formData.get("redirectTo") ?? ""));
 
   if (!verifyAdminCredentials(username, password)) {
     return { error: "Usuario o clave incorrectos." };
@@ -53,136 +65,169 @@ export async function loginAction(formData: FormData) {
   const cookieStore = await cookies();
   cookieStore.set(SESSION_COOKIE, token, getSessionCookieOptions());
 
-  redirect("/admin");
+  redirect(redirectTo);
 }
 
 export async function logoutAction() {
   const cookieStore = await cookies();
-  cookieStore.delete(SESSION_COOKIE);
+  cookieStore.delete({ name: SESSION_COOKIE, path: "/admin" });
   redirect("/admin/login");
 }
 
 export async function createProductAction(formData: FormData) {
-  await requireAdmin();
+  try {
+    const authError = await requireAdmin();
+    if (authError) {
+      return authError;
+    }
 
-  const name = String(formData.get("name") ?? "").trim();
-  const description = String(formData.get("description") ?? "").trim();
-  const price = Number(formData.get("price"));
-  const category = String(formData.get("category") ?? "") as ProductCategory;
-  const unit = String(formData.get("unit") ?? "unidad").trim();
-  const idInput = String(formData.get("id") ?? "").trim();
-  const image = formData.get("image");
+    const name = String(formData.get("name") ?? "").trim();
+    const description = String(formData.get("description") ?? "").trim();
+    const price = Number(formData.get("price"));
+    const category = String(formData.get("category") ?? "") as ProductCategory;
+    const unit = String(formData.get("unit") ?? "unidad").trim();
+    const idInput = String(formData.get("id") ?? "").trim();
+    const image = formData.get("image");
 
-  if (!name || !description || !unit || Number.isNaN(price) || price < 0) {
-    return { error: "Completá todos los campos obligatorios." };
+    if (!name || !description || !unit || Number.isNaN(price) || price < 0) {
+      return { error: "Completá todos los campos obligatorios." };
+    }
+
+    if (category !== "alfajores" && category !== "conitos") {
+      return { error: "Categoría inválida." };
+    }
+
+    const id = idInput || slugify(name);
+    if (!id) {
+      return { error: "No se pudo generar un identificador para el producto." };
+    }
+
+    if (!(image instanceof File) || image.size === 0) {
+      return { error: "Subí una foto del producto." };
+    }
+
+    const imageError = validateImage(image);
+    if (imageError) {
+      return imageError;
+    }
+
+    const products = await getMutableProductsFromStore();
+    if (products.some((product) => product.id === id)) {
+      return { error: "Ya existe un producto con ese identificador." };
+    }
+
+    const imagePath = await uploadProductImage(image, id);
+
+    const newProduct: Product = {
+      id,
+      name,
+      description,
+      price: Math.round(price),
+      category,
+      image: imagePath,
+      unit,
+    };
+
+    await saveProducts([...products, newProduct]);
+
+    revalidatePath("/");
+    revalidatePath("/admin");
+    redirect("/admin");
+  } catch (error) {
+    return {
+      error: error instanceof Error ? error.message : "No se pudo crear el producto.",
+    };
   }
-
-  if (category !== "alfajores" && category !== "conitos") {
-    return { error: "Categoría inválida." };
-  }
-
-  const id = idInput || slugify(name);
-  if (!id) {
-    return { error: "No se pudo generar un identificador para el producto." };
-  }
-
-  if (!(image instanceof File) || image.size === 0) {
-    return { error: "Subí una foto del producto." };
-  }
-
-  validateImage(image);
-
-  const products = await getProductsFromStore();
-  if (products.some((product) => product.id === id)) {
-    return { error: "Ya existe un producto con ese identificador." };
-  }
-
-  const imagePath = await uploadProductImage(image, id);
-
-  const newProduct: Product = {
-    id,
-    name,
-    description,
-    price: Math.round(price),
-    category,
-    image: imagePath,
-    unit,
-  };
-
-  await saveProducts([...products, newProduct]);
-
-  revalidatePath("/");
-  revalidatePath("/admin");
-  redirect("/admin");
 }
 
 export async function updateProductAction(formData: FormData) {
-  await requireAdmin();
+  try {
+    const authError = await requireAdmin();
+    if (authError) {
+      return authError;
+    }
 
-  const id = String(formData.get("id") ?? "").trim();
-  const name = String(formData.get("name") ?? "").trim();
-  const description = String(formData.get("description") ?? "").trim();
-  const price = Number(formData.get("price"));
-  const category = String(formData.get("category") ?? "") as ProductCategory;
-  const unit = String(formData.get("unit") ?? "unidad").trim();
-  const image = formData.get("image");
+    const id = String(formData.get("id") ?? "").trim();
+    const name = String(formData.get("name") ?? "").trim();
+    const description = String(formData.get("description") ?? "").trim();
+    const price = Number(formData.get("price"));
+    const category = String(formData.get("category") ?? "") as ProductCategory;
+    const unit = String(formData.get("unit") ?? "unidad").trim();
+    const image = formData.get("image");
 
-  if (!id || !name || !description || !unit || Number.isNaN(price) || price < 0) {
-    return { error: "Completá todos los campos obligatorios." };
+    if (!id || !name || !description || !unit || Number.isNaN(price) || price < 0) {
+      return { error: "Completá todos los campos obligatorios." };
+    }
+
+    if (category !== "alfajores" && category !== "conitos") {
+      return { error: "Categoría inválida." };
+    }
+
+    const products = await getMutableProductsFromStore();
+    const index = products.findIndex((product) => product.id === id);
+
+    if (index === -1) {
+      return { error: "Producto no encontrado." };
+    }
+
+    let imagePath = products[index].image;
+    if (image instanceof File && image.size > 0) {
+      const imageError = validateImage(image);
+      if (imageError) {
+        return imageError;
+      }
+      imagePath = await uploadProductImage(image, id);
+    }
+
+    products[index] = {
+      id,
+      name,
+      description,
+      price: Math.round(price),
+      category,
+      image: imagePath,
+      unit,
+    };
+
+    await saveProducts(products);
+
+    revalidatePath("/");
+    revalidatePath("/admin");
+    redirect("/admin");
+  } catch (error) {
+    return {
+      error: error instanceof Error ? error.message : "No se pudo actualizar el producto.",
+    };
   }
-
-  if (category !== "alfajores" && category !== "conitos") {
-    return { error: "Categoría inválida." };
-  }
-
-  const products = await getProductsFromStore();
-  const index = products.findIndex((product) => product.id === id);
-
-  if (index === -1) {
-    return { error: "Producto no encontrado." };
-  }
-
-  let imagePath = products[index].image;
-  if (image instanceof File && image.size > 0) {
-    validateImage(image);
-    imagePath = await uploadProductImage(image, id);
-  }
-
-  products[index] = {
-    id,
-    name,
-    description,
-    price: Math.round(price),
-    category,
-    image: imagePath,
-    unit,
-  };
-
-  await saveProducts(products);
-
-  revalidatePath("/");
-  revalidatePath("/admin");
-  redirect("/admin");
 }
 
 export async function deleteProductAction(formData: FormData) {
-  await requireAdmin();
+  try {
+    const authError = await requireAdmin();
+    if (authError) {
+      return authError;
+    }
 
-  const id = String(formData.get("id") ?? "").trim();
-  if (!id) {
-    return { error: "Producto inválido." };
+    const id = String(formData.get("id") ?? "").trim();
+    if (!id) {
+      return { error: "Producto inválido." };
+    }
+
+    const products = await getMutableProductsFromStore();
+    const filtered = products.filter((product) => product.id !== id);
+
+    if (filtered.length === products.length) {
+      return { error: "Producto no encontrado." };
+    }
+
+    await saveProducts(filtered);
+
+    revalidatePath("/");
+    revalidatePath("/admin");
+    redirect("/admin");
+  } catch (error) {
+    return {
+      error: error instanceof Error ? error.message : "No se pudo eliminar el producto.",
+    };
   }
-
-  const products = await getProductsFromStore();
-  const filtered = products.filter((product) => product.id !== id);
-
-  if (filtered.length === products.length) {
-    return { error: "Producto no encontrado." };
-  }
-
-  await saveProducts(filtered);
-
-  revalidatePath("/");
-  revalidatePath("/admin");
-  redirect("/admin");
 }

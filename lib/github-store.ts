@@ -2,6 +2,7 @@ import { readFile, writeFile, mkdir } from "fs/promises";
 import path from "path";
 import { fallbackProducts } from "./products-fallback";
 import type { Product } from "./types";
+import { parseProducts } from "./validate-product";
 
 const PRODUCTS_JSON_PATH = "data/products.json";
 
@@ -17,6 +18,10 @@ interface GitHubContentResponse {
   sha?: string;
   encoding?: string;
 }
+
+type GitHubProductsReadResult =
+  | { status: "found"; products: Product[] }
+  | { status: "missing" };
 
 function getGitHubConfig(): GitHubConfig | null {
   const token = process.env.GITHUB_TOKEN;
@@ -35,6 +40,15 @@ export function isGitHubStoreConfigured(): boolean {
   return getGitHubConfig() !== null;
 }
 
+function getGitHubRawUrl(pathInRepo: string): string {
+  const config = getGitHubConfig();
+  if (!config) {
+    throw new Error("GitHub no configurado.");
+  }
+
+  return `https://raw.githubusercontent.com/${config.owner}/${config.repo}/${config.branch}/${pathInRepo}`;
+}
+
 function getLocalProductsPath(): string {
   return path.join(process.cwd(), PRODUCTS_JSON_PATH);
 }
@@ -46,7 +60,7 @@ function getLocalPublicProductsDir(): string {
 async function readLocalProducts(): Promise<Product[] | null> {
   try {
     const raw = await readFile(getLocalProductsPath(), "utf-8");
-    return JSON.parse(raw) as Product[];
+    return parseProducts(JSON.parse(raw));
   } catch {
     return null;
   }
@@ -124,14 +138,14 @@ async function putGitHubFile(
   }
 }
 
-async function readProductsFromGitHub(): Promise<Product[] | null> {
+async function readProductsFromGitHub(): Promise<GitHubProductsReadResult> {
   const file = await getGitHubFile(PRODUCTS_JSON_PATH);
   if (!file?.content) {
-    return null;
+    return { status: "missing" };
   }
 
   const decoded = Buffer.from(file.content, "base64").toString("utf-8");
-  return JSON.parse(decoded) as Product[];
+  return { status: "found", products: parseProducts(JSON.parse(decoded)) };
 }
 
 async function writeProductsToGitHub(products: Product[]): Promise<void> {
@@ -146,12 +160,25 @@ async function writeProductsToGitHub(products: Product[]): Promise<void> {
   );
 }
 
+export async function getMutableProductsFromStore(): Promise<Product[]> {
+  if (isGitHubStoreConfigured()) {
+    const result = await readProductsFromGitHub();
+    if (result.status === "found") {
+      return result.products;
+    }
+    return [];
+  }
+
+  const local = await readLocalProducts();
+  return local ?? [];
+}
+
 export async function getProductsFromStore(): Promise<Product[]> {
   if (isGitHubStoreConfigured()) {
     try {
-      const products = await readProductsFromGitHub();
-      if (products?.length) {
-        return products;
+      const result = await readProductsFromGitHub();
+      if (result.status === "found") {
+        return result.products;
       }
     } catch {
       // fall through to local/fallback
@@ -191,7 +218,7 @@ export async function uploadProductImage(file: File, productId: string): Promise
       `Upload product image ${filename}`,
       existing?.sha,
     );
-    return `/products/${filename}`;
+    return getGitHubRawUrl(pathInRepo);
   }
 
   const dir = getLocalPublicProductsDir();
@@ -201,6 +228,6 @@ export async function uploadProductImage(file: File, productId: string): Promise
 }
 
 export async function getProductFromStore(id: string): Promise<Product | undefined> {
-  const products = await getProductsFromStore();
+  const products = await getMutableProductsFromStore();
   return products.find((product) => product.id === id);
 }

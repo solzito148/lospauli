@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { ProductForm } from "@/components/admin/ProductForm";
-import { getProductById } from "@/lib/products";
+import { getProductFromStore } from "@/lib/github-store";
 
 interface EditProductPageProps {
   params: Promise<{ id: string }>;
@@ -8,7 +8,7 @@ interface EditProductPageProps {
 
 export default async function EditProductPage({ params }: EditProductPageProps) {
   const { id } = await params;
-  const product = await getProductById(id);
+  const product = await getProductFromStore(id);
 
   if (!product) {
     notFound();

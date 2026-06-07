@@ -12,7 +12,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const { addItem } = useCart();
-  const isPhoto = !product.image.endsWith(".svg");
+  const isPhoto = !(product.image ?? "").endsWith(".svg");
 
   const whatsappUrl = buildWhatsAppUrl(buildProductInquiryMessage(product));
 

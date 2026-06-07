@@ -5,7 +5,11 @@ import { loginAction } from "@/app/admin/actions";
 
 const initialState = { error: "" };
 
-export function LoginForm() {
+interface LoginFormProps {
+  redirectTo?: string;
+}
+
+export function LoginForm({ redirectTo }: LoginFormProps) {
   const [state, formAction, pending] = useActionState(
     async (_prev: typeof initialState, formData: FormData) => {
       const result = await loginAction(formData);
@@ -16,6 +20,8 @@ export function LoginForm() {
 
   return (
     <form action={formAction} className="space-y-4 rounded-2xl border border-dulce/30 bg-blanco p-6 shadow-sm">
+      {redirectTo && <input type="hidden" name="redirectTo" value={redirectTo} />}
+
       <div>
         <label htmlFor="username" className="mb-1 block text-sm font-medium text-chocolate">
           Usuario

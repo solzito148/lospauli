@@ -11,6 +11,7 @@ import {
 } from "react";
 import { reconcileCartWithCatalog } from "@/lib/cart-sync";
 import type { CartItem, Product } from "@/lib/types";
+import { parseCartItems } from "@/lib/validate-product";
 
 const STORAGE_KEY = "salvatore-cart";
 
@@ -33,7 +34,10 @@ function loadCartFromStorage(): CartItem[] {
   if (typeof window === "undefined") return [];
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
-    return stored ? (JSON.parse(stored) as CartItem[]) : [];
+    if (!stored) {
+      return [];
+    }
+    return parseCartItems(JSON.parse(stored));
   } catch {
     return [];
   }
@@ -79,15 +83,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const syncWithCatalog = useCallback(
     (catalog: Product[]) => {
-      if (!hydrated || catalog.length === 0) {
+      if (!hydrated) {
         return;
       }
 
       setItems((current) => {
-        const { items: synced, removedCount } = reconcileCartWithCatalog(current, catalog);
+        const { items: synced, removedCount } =
+          catalog.length === 0
+            ? { items: [], removedCount: current.length }
+            : reconcileCartWithCatalog(current, catalog);
 
         if (removedCount > 0) {
-          setSyncNotice(true);
+          setTimeout(() => setSyncNotice(true), 0);
         }
 
         return cartItemsEqual(current, synced) ? current : synced;

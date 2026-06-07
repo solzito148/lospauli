@@ -37,7 +37,14 @@ export default async function AdminDashboardPage() {
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
+              {products.length === 0 ? (
+                <tr>
+                  <td colSpan={5} className="px-4 py-10 text-center text-sm text-cacao/80">
+                    Todavía no hay productos. Creá el primero con el botón de arriba.
+                  </td>
+                </tr>
+              ) : (
+                products.map((product) => (
                 <tr key={product.id} className="border-b border-dulce/10 last:border-0">
                   <td className="px-4 py-3">
                     <div className="relative h-14 w-14 overflow-hidden rounded-lg bg-crema">
@@ -68,7 +75,8 @@ export default async function AdminDashboardPage() {
                     </div>
                   </td>
                 </tr>
-              ))}
+                ))
+              )}
             </tbody>
           </table>
         </div>

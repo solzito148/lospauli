@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import type { Product, ProductCategory } from "@/lib/types";
 
@@ -9,6 +9,11 @@ const categories: { id: ProductCategory; label: string; sectionId: string }[] = 
   { id: "conitos", label: "Conitos", sectionId: "conitos" },
 ];
 
+function categoryFromHash(hash: string): ProductCategory | null {
+  const value = hash.replace("#", "");
+  return value === "alfajores" || value === "conitos" ? value : null;
+}
+
 interface ProductGridProps {
   products: Product[];
 }
@@ -16,6 +21,24 @@ interface ProductGridProps {
 export function ProductGrid({ products }: ProductGridProps) {
   const [activeCategory, setActiveCategory] = useState<ProductCategory>("alfajores");
   const filteredProducts = products.filter((p) => p.category === activeCategory);
+
+  useEffect(() => {
+    const syncFromHash = () => {
+      const category = categoryFromHash(window.location.hash);
+      if (category) {
+        setActiveCategory(category);
+      }
+    };
+
+    syncFromHash();
+    window.addEventListener("hashchange", syncFromHash);
+    return () => window.removeEventListener("hashchange", syncFromHash);
+  }, []);
+
+  const selectCategory = (category: ProductCategory) => {
+    setActiveCategory(category);
+    window.history.replaceState(null, "", `#${category}`);
+  };
 
   return (
     <section id="productos" className="bg-blanco py-16 sm:py-20">
@@ -33,7 +56,7 @@ export function ProductGrid({ products }: ProductGridProps) {
               key={cat.id}
               type="button"
               id={cat.sectionId}
-              onClick={() => setActiveCategory(cat.id)}
+              onClick={() => selectCategory(cat.id)}
               className={`rounded-full px-6 py-2.5 text-sm font-medium transition-colors ${
                 activeCategory === cat.id
                   ? "bg-chocolate text-blanco"
@@ -45,11 +68,17 @@ export function ProductGrid({ products }: ProductGridProps) {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        {filteredProducts.length === 0 ? (
+          <p className="rounded-2xl border border-dulce/30 bg-crema/40 px-6 py-10 text-center text-sm text-cacao/80">
+            No hay productos en esta categoría por ahora. Volvé pronto o consultanos por WhatsApp.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

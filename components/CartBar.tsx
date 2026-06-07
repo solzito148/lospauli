@@ -6,13 +6,27 @@ import { formatPrice } from "@/lib/format";
 import { buildCartOrderMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
 
 export function CartBar() {
-  const { items, itemCount, total, updateQuantity, removeItem, syncNotice, dismissSyncNotice } =
-    useCart();
+  const {
+    items,
+    itemCount,
+    total,
+    updateQuantity,
+    removeItem,
+    clearCart,
+    syncNotice,
+    dismissSyncNotice,
+  } = useCart();
   const [expanded, setExpanded] = useState(false);
 
   if (itemCount === 0) return null;
 
   const whatsappUrl = buildWhatsAppUrl(buildCartOrderMessage(items));
+
+  const handleSendOrder = () => {
+    clearCart();
+    setExpanded(false);
+    dismissSyncNotice();
+  };
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-dulce/30 bg-blanco/95 shadow-[0_-4px_24px_rgba(61,35,20,0.08)] backdrop-blur-sm">
@@ -108,6 +122,7 @@ export function CartBar() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={handleSendOrder}
             className="shrink-0 rounded-full bg-whatsapp px-4 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 sm:px-6"
           >
             Enviar pedido
