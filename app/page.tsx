@@ -1,5 +1,6 @@
 import { AboutSection } from "@/components/AboutSection";
 import { CartBar } from "@/components/CartBar";
+import { CartCatalogSync } from "@/components/CartCatalogSync";
 import { FAQ } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -13,6 +14,7 @@ export default async function Home() {
 
   return (
     <>
+      <CartCatalogSync products={products} />
       <Header />
       <main className="flex-1 pb-24">
         <Hero />

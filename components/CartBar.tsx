@@ -6,7 +6,8 @@ import { formatPrice } from "@/lib/format";
 import { buildCartOrderMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
 
 export function CartBar() {
-  const { items, itemCount, total, updateQuantity, removeItem } = useCart();
+  const { items, itemCount, total, updateQuantity, removeItem, syncNotice, dismissSyncNotice } =
+    useCart();
   const [expanded, setExpanded] = useState(false);
 
   if (itemCount === 0) return null;
@@ -16,6 +17,19 @@ export function CartBar() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-dulce/30 bg-blanco/95 shadow-[0_-4px_24px_rgba(61,35,20,0.08)] backdrop-blur-sm">
       <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
+        {syncNotice && (
+          <div className="mb-3 flex items-start justify-between gap-3 rounded-xl border border-dulce/30 bg-crema/80 px-3 py-2 text-xs text-cacao">
+            <p>Se actualizó tu pedido según el catálogo actual.</p>
+            <button
+              type="button"
+              onClick={dismissSyncNotice}
+              className="shrink-0 font-medium text-chocolate underline-offset-2 hover:underline"
+            >
+              Entendido
+            </button>
+          </div>
+        )}
+
         {expanded && (
           <div className="mb-3 max-h-48 overflow-y-auto rounded-xl border border-dulce/20 bg-crema/50 p-3">
             <p className="mb-2 text-xs font-medium uppercase tracking-wider text-cacao">
