@@ -48,20 +48,6 @@ export function Footer() {
             Defensa al consumidor
           </a>
         </div>
-
-        <div className="mt-8 text-center">
-          <span aria-hidden="true" className="block text-sm text-dulce/60">
-            ✦
-          </span>
-          <a
-            href="https://pistaqio.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-2 inline-block text-xs uppercase tracking-[0.2em] text-blanco/40 transition-colors hover:text-dulce"
-          >
-            Creado por pistaqio.com
-          </a>
-        </div>
       </div>
     </footer>
   );
