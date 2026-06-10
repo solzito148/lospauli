@@ -79,5 +79,14 @@
     "category": "alfajores",
     "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/alfajor-maicena-6-1781059796107.jpg",
     "unit": "Caja x6"
+  },
+  {
+    "id": "alfajor-choco-12",
+    "name": "Alfajores chocolate x12",
+    "description": "Caja x 12 alfajores de chocolate",
+    "price": 19000,
+    "category": "alfajores",
+    "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/alfajor-choco-12-1781060307526.webp",
+    "unit": "Caja"
   }
 ]
