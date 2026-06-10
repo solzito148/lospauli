@@ -14,7 +14,7 @@
     "description": "Alfajor de almidón de maíz relleno de dulce de leche.",
     "price": 19000,
     "category": "alfajores",
-    "image": "/products/alfajores-salvatore.png",
+    "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/alfajor-maicena-1781060041817.jpg",
     "unit": "Caja de 12"
   },
   {
