@@ -2,8 +2,8 @@
   {
     "id": "alfajor-negro",
     "name": "Alfajor Negro",
-    "description": "Chocolate semiamargo, dulce de leche y cobertura intensa.",
-    "price": 929,
+    "description": "Alfajor con baño de chocolate, relleno con dulce de leche.",
+    "price": 19000,
     "category": "alfajores",
     "image": "/products/alfajores-salvatore.png",
     "unit": "unidad"
