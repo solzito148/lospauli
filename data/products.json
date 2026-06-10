@@ -78,15 +78,19 @@
   {
     "id": "conito-dulce-de-leche-nuez",
     "name": "Conito Chocolate Negro con Nuez",
-    "description": "Relleno con dulce de leche y nuez. Envoltorio violeta.",
+    "description": "Conitos bañados con chocolate negro rellenos con dulce de leche y nuez",
     "price": 21000,
     "category": "conitos",
     "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/conito-dulce-de-leche-nuez-1781060721716.jpg",
-    "unit": "Caja de 12",
+    "unit": "Caja",
     "packOptions": [
       {
         "units": 6,
         "price": 11600
+      },
+      {
+        "units": 12,
+        "price": 21000
       }
     ]
   },
