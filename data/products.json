@@ -41,7 +41,7 @@
     "description": "Relleno con dulce de leche y nuez. Envoltorio violeta.",
     "price": 21000,
     "category": "conitos",
-    "image": "/products/conito-dulce-de-leche.png",
+    "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/conito-dulce-de-leche-nuez-1781060721716.jpg",
     "unit": "Caja de 12"
   },
   {
