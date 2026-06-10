@@ -129,15 +129,15 @@ export async function createProductAction(formData: FormData) {
     };
 
     await saveProducts([...products, newProduct]);
-
-    revalidatePath("/");
-    revalidatePath("/admin");
-    redirect("/admin");
   } catch (error) {
     return {
       error: error instanceof Error ? error.message : "No se pudo crear el producto.",
     };
   }
+
+  revalidatePath("/");
+  revalidatePath("/admin");
+  redirect("/admin");
 }
 
 export async function updateProductAction(formData: FormData) {
@@ -190,15 +190,15 @@ export async function updateProductAction(formData: FormData) {
     };
 
     await saveProducts(products);
-
-    revalidatePath("/");
-    revalidatePath("/admin");
-    redirect("/admin");
   } catch (error) {
     return {
       error: error instanceof Error ? error.message : "No se pudo actualizar el producto.",
     };
   }
+
+  revalidatePath("/");
+  revalidatePath("/admin");
+  redirect("/admin");
 }
 
 export async function deleteProductAction(formData: FormData) {
@@ -221,13 +221,13 @@ export async function deleteProductAction(formData: FormData) {
     }
 
     await saveProducts(filtered);
-
-    revalidatePath("/");
-    revalidatePath("/admin");
-    redirect("/admin");
   } catch (error) {
     return {
       error: error instanceof Error ? error.message : "No se pudo eliminar el producto.",
     };
   }
+
+  revalidatePath("/");
+  revalidatePath("/admin");
+  redirect("/admin");
 }
