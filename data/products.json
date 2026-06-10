@@ -5,7 +5,7 @@
     "description": "Alfajor con baño de chocolate, relleno con dulce de leche.",
     "price": 19000,
     "category": "alfajores",
-    "image": "/products/alfajores-salvatore.png",
+    "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/alfajor-negro-1781059130934.jpg",
     "unit": "Caja de 12"
   },
   {
