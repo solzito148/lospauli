@@ -111,12 +111,22 @@
   },
   {
     "id": "conito-surtido",
-    "name": "Conitos Surtidos",
-    "description": "Selección de conitos SALVATORE: dulce de leche, nuez y plateado.",
-    "price": 3800,
+    "name": "Conito Chocolate Blanco con Nuez",
+    "description": "Conitos bañados con chocolate blanco rellenos con dulce de leche con nuez",
+    "price": 21000,
     "category": "conitos",
-    "image": "/products/conitos-salvatore.png",
-    "unit": "caja surtida"
+    "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/conito-surtido-1781062198996.jpg",
+    "unit": "Caja",
+    "packOptions": [
+      {
+        "units": 6,
+        "price": 11600
+      },
+      {
+        "units": 12,
+        "price": 21000
+      }
+    ]
   },
   {
     "id": "alfajor-maicena-6",
