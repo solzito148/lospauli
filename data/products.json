@@ -40,7 +40,7 @@
   {
     "id": "alfajor-triple",
     "name": "Mix de Alfajores",
-    "description": "Elige tu caja de 6 unidades o de 12 unidades. Toca en \"Comprar\" y  te redirigirá automáticamente a nuestro WhatsApp. Allí nos indicas qué variedades y cantidades quieres para completar tu caja de 6 o 12. ¡Y listo!",
+    "description": "Elige tu caja de 6 unidades o de 12 unidades. Toca en \"Comprar\" y  te redirigirá automáticamente a nuestro WhatsApp. Allí nos indicas qué variedades y cantidades quieres para completar tu caja. ¡Y listo!",
     "price": 19000,
     "category": "alfajores",
     "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/alfajor-triple-1781061711433.jpg",
