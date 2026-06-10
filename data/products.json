@@ -61,14 +61,5 @@
     "category": "conitos",
     "image": "/products/conitos-salvatore.png",
     "unit": "caja surtida"
-  },
-  {
-    "id": "Alfajor Blanco",
-    "name": "Alfajor Blanco",
-    "description": "Alfajor relleno con dulce de leche baño chocolate blanco",
-    "price": 19000,
-    "category": "alfajores",
-    "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/Alfajor Blanco-1781059469299.jpg",
-    "unit": "Caja de 12"
   }
 ]
