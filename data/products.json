@@ -1,14 +1,5 @@
 [
   {
-    "id": "alfajor-clasico",
-    "name": "Alfajor Clásico",
-    "description": "Dulce de leche artesanal entre dos galletas bañadas en chocolate.",
-    "price": 700,
-    "category": "alfajores",
-    "image": "/products/alfajores-salvatore.png",
-    "unit": "unidad"
-  },
-  {
     "id": "alfajor-negro",
     "name": "Alfajor Negro",
     "description": "Chocolate semiamargo, dulce de leche y cobertura intensa.",
