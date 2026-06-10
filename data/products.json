@@ -73,12 +73,12 @@
   },
   {
     "id": "alfajor-maicena-6",
-    "name": "Alfajor maicena x6",
-    "description": "caja de 6 unidades",
+    "name": "Alfajor de maice",
+    "description": "Riquísimos alfajores de maicena y dulce de leche con borde de coco rallado.",
     "price": 12000,
     "category": "alfajores",
     "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/alfajor-maicena-6-1781059796107.jpg",
-    "unit": "Caja x6",
+    "unit": "1",
     "packOptions": [
       {
         "units": 1,
