@@ -59,11 +59,21 @@
   {
     "id": "conito-dulce-de-leche",
     "name": "Conito Chocolate Negro",
-    "description": "Conito relleno de dulce de leche con baño de chocolate negro.",
+    "description": "Conito relleno de dulce de leche con baño de chocolate negro",
     "price": 20000,
     "category": "conitos",
     "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/conito-dulce-de-leche-1781060137561.jpg",
-    "unit": "Caja de 12"
+    "unit": "Caja",
+    "packOptions": [
+      {
+        "units": 6,
+        "price": 11000
+      },
+      {
+        "units": 12,
+        "price": 20000
+      }
+    ]
   },
   {
     "id": "conito-dulce-de-leche-nuez",
