@@ -37,12 +37,12 @@
   },
   {
     "id": "conito-dulce-de-leche-nuez",
-    "name": "Conito Dulce de Leche y Nuez",
+    "name": "Conito Chocolate Negro con Nuez",
     "description": "Relleno con dulce de leche y nuez. Envoltorio violeta.",
-    "price": 700,
+    "price": 21000,
     "category": "conitos",
     "image": "/products/conito-dulce-de-leche.png",
-    "unit": "75 g"
+    "unit": "Caja de 12"
   },
   {
     "id": "conito-dulce-de-leche-plateado",
