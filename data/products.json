@@ -167,25 +167,6 @@
     ]
   },
   {
-    "id": "Full Mix",
-    "name": "Full Mix Alfajores y Conos",
-    "description": "Elige tu caja de 6 unidades o de 12 unidades. Toca en \"Comprar\" y te redirigirá automáticamente a nuestro chat. Allí nos indicas qué variedades y cantidades quieres para completar tu caja. ¡Y listo!",
-    "price": 20500,
-    "category": "conitos",
-    "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/Full Mix-1781068526939.jpg",
-    "unit": "Caja",
-    "packOptions": [
-      {
-        "units": 6,
-        "price": 11300
-      },
-      {
-        "units": 12,
-        "price": 20500
-      }
-    ]
-  },
-  {
     "id": "Full Mix Conos y Alfajores",
     "name": "Full Mix Conos y Alfajores",
     "description": "Elige tu caja de 6 unidades o de 12 unidades. Toca en \"Comprar\" y te redirigirá automáticamente a nuestro chat. Allí nos indicas qué variedades y cantidades quieres para completar tu caja. ¡Y listo!",
