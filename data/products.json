@@ -100,27 +100,19 @@
   },
   {
     "id": "alfajor-maicena-6",
-    "name": "Alfajor de maicena",
-    "description": "Riquísimos alfajores de maicena y dulce de leche con borde de coco rallado.",
-    "price": 12000,
+    "name": "Alfajor Blanco",
+    "description": "Alfajor relleno con dulce de leche con baño de chocolate blanco.",
+    "price": 19000,
     "category": "alfajores",
-    "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/alfajor-maicena-6-1781061208000.jpg",
-    "unit": "1",
+    "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/alfajor-maicena-6-1781061499508.jpg",
+    "unit": "caja",
     "packOptions": [
       {
-        "units": 1,
-        "price": 2000
-      },
-      {
         "units": 6,
-        "price": 12000
+        "price": 10500
       },
       {
         "units": 12,
-        "price": 7000
-      },
-      {
-        "units": 24,
         "price": 19000
       }
     ]
