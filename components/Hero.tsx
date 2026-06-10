@@ -4,7 +4,7 @@ import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="relative min-h-[85vh] lg:min-h-[90vh]">
+      <div className="relative min-h-[85svh] lg:min-h-[90svh]">
         <Image
           src="/hero-salvatore.png"
           alt="Alfajores SALVATORE artesanales con dulce de leche y chocolate"
@@ -15,7 +15,7 @@ export function Hero() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-chocolate/90 via-chocolate/55 to-chocolate/20 lg:to-transparent" />
 
-        <div className="relative mx-auto flex min-h-[85vh] max-w-6xl flex-col justify-center px-4 py-20 sm:px-6 lg:min-h-[90vh] lg:py-24">
+        <div className="relative mx-auto flex min-h-[85svh] max-w-6xl flex-col justify-center px-4 py-20 sm:px-6 lg:min-h-[90svh] lg:py-24">
           <div className="max-w-xl">
             <span className="inline-flex w-fit rounded-full border border-blanco/30 bg-blanco/10 px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-blanco backdrop-blur-sm">
               Pedidos por WhatsApp · Envíos a consultar

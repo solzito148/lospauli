@@ -31,7 +31,7 @@ export function LoginForm({ redirectTo }: LoginFormProps) {
           name="username"
           required
           autoComplete="username"
-          className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-sm text-chocolate outline-none focus:border-cacao"
+          className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-base text-chocolate outline-none focus:border-cacao sm:text-sm"
         />
       </div>
 
@@ -45,7 +45,7 @@ export function LoginForm({ redirectTo }: LoginFormProps) {
           type="password"
           required
           autoComplete="current-password"
-          className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-sm text-chocolate outline-none focus:border-cacao"
+          className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-base text-chocolate outline-none focus:border-cacao sm:text-sm"
         />
       </div>
 

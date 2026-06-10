@@ -66,7 +66,7 @@ export function ProductForm({ product }: ProductFormProps) {
             id="id"
             name="id"
             placeholder="ej. alfajor-clasico"
-            className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-sm text-chocolate outline-none focus:border-cacao"
+            className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-base text-chocolate outline-none focus:border-cacao sm:text-sm"
           />
           <p className="mt-1 text-xs text-cacao/70">Si lo dejás vacío, se genera automáticamente del nombre.</p>
         </div>
@@ -81,7 +81,7 @@ export function ProductForm({ product }: ProductFormProps) {
           name="name"
           required
           defaultValue={product?.name}
-          className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-sm text-chocolate outline-none focus:border-cacao"
+          className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-base text-chocolate outline-none focus:border-cacao sm:text-sm"
         />
       </div>
 
@@ -95,7 +95,7 @@ export function ProductForm({ product }: ProductFormProps) {
           required
           rows={3}
           defaultValue={product?.description}
-          className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-sm text-chocolate outline-none focus:border-cacao"
+          className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-base text-chocolate outline-none focus:border-cacao sm:text-sm"
         />
       </div>
 
@@ -112,7 +112,7 @@ export function ProductForm({ product }: ProductFormProps) {
             step={1}
             required
             defaultValue={product?.price}
-            className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-sm text-chocolate outline-none focus:border-cacao"
+            className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-base text-chocolate outline-none focus:border-cacao sm:text-sm"
           />
         </div>
 
@@ -126,7 +126,7 @@ export function ProductForm({ product }: ProductFormProps) {
             required
             defaultValue={product?.unit ?? "unidad"}
             placeholder="unidad, 68 g, caja surtida"
-            className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-sm text-chocolate outline-none focus:border-cacao"
+            className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-base text-chocolate outline-none focus:border-cacao sm:text-sm"
           />
         </div>
       </div>
@@ -155,7 +155,7 @@ export function ProductForm({ product }: ProductFormProps) {
                 onChange={(event) => updatePackRow(row.key, "units", event.target.value)}
                 placeholder="6"
                 aria-label="Cantidad de unidades"
-                className="w-20 rounded-xl border border-dulce/40 bg-crema/30 px-3 py-2 text-sm text-chocolate outline-none focus:border-cacao"
+                className="w-20 rounded-xl border border-dulce/40 bg-crema/30 px-3 py-2 text-base text-chocolate outline-none focus:border-cacao sm:text-sm"
               />
               <span className="text-sm text-cacao">a $</span>
               <input
@@ -168,7 +168,7 @@ export function ProductForm({ product }: ProductFormProps) {
                 onChange={(event) => updatePackRow(row.key, "price", event.target.value)}
                 placeholder="4500"
                 aria-label="Precio de la presentación"
-                className="w-28 rounded-xl border border-dulce/40 bg-crema/30 px-3 py-2 text-sm text-chocolate outline-none focus:border-cacao"
+                className="w-28 rounded-xl border border-dulce/40 bg-crema/30 px-3 py-2 text-base text-chocolate outline-none focus:border-cacao sm:text-sm"
               />
               <button
                 type="button"
@@ -199,7 +199,7 @@ export function ProductForm({ product }: ProductFormProps) {
           name="category"
           required
           defaultValue={product?.category ?? "alfajores"}
-          className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-sm text-chocolate outline-none focus:border-cacao"
+          className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-base text-chocolate outline-none focus:border-cacao sm:text-sm"
         >
           <option value="alfajores">Alfajores</option>
           <option value="conitos">Conitos</option>

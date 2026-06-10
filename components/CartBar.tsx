@@ -29,7 +29,10 @@ export function CartBar() {
   };
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-dulce/30 bg-blanco/95 shadow-[0_-4px_24px_rgba(61,35,20,0.08)] backdrop-blur-sm">
+    <>
+      {/* Reserva espacio al final de la página para que la barra fija no tape el footer */}
+      <div aria-hidden className="h-[calc(6rem+env(safe-area-inset-bottom))]" />
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-dulce/30 bg-blanco/95 pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_24px_rgba(61,35,20,0.08)] backdrop-blur-sm">
       <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
         {syncNotice && (
           <div className="mb-3 flex items-start justify-between gap-3 rounded-xl border border-dulce/30 bg-crema/80 px-3 py-2 text-xs text-cacao">
@@ -139,6 +142,7 @@ export function CartBar() {
           </a>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

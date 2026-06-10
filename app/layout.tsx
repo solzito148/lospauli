@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans, Playfair_Display } from "next/font/google";
 import { Providers } from "@/components/Providers";
 import "./globals.css";
@@ -12,6 +12,13 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  // Permite extender el fondo bajo el notch y usar env(safe-area-inset-*)
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   title: "SALVATORE — Alfajores y Conitos Artesanales",

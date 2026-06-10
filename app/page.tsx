@@ -16,7 +16,7 @@ export default async function Home() {
     <>
       <CartCatalogSync products={products} />
       <Header />
-      <main className="flex-1 pb-24">
+      <main className="flex-1">
         <Hero />
         <ProductGrid products={products} />
         <AboutSection />

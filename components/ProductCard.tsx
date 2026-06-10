@@ -62,7 +62,7 @@ export function ProductCard({ product }: ProductCardProps) {
               id={`pack-${product.id}`}
               value={selectedPack?.units}
               onChange={(event) => setSelectedUnits(Number(event.target.value))}
-              className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-3 py-2 text-sm text-chocolate outline-none focus:border-cacao"
+              className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-3 py-2 text-base text-chocolate outline-none focus:border-cacao sm:text-sm"
             >
               {packOptions.map((option) => (
                 <option key={option.units} value={option.units}>
