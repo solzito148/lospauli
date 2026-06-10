@@ -31,7 +31,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-dulce/30 bg-blanco shadow-sm transition-shadow hover:shadow-md">
-      <div className={`relative overflow-hidden bg-crema ${isPhoto ? "aspect-[4/3]" : "aspect-square"}`}>
+      <div className={`relative overflow-hidden bg-white ${isPhoto ? "aspect-[4/3]" : "aspect-square"}`}>
         <Image
           src={product.image}
           alt={product.name}
@@ -73,11 +73,11 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
         )}
 
-        <p className="font-serif text-xl font-semibold text-chocolate">
+        <p className="font-serif text-2xl font-semibold tracking-tight text-chocolate">
           {formatPrice(displayPrice)}
         </p>
 
-        <div className="flex flex-col gap-2 sm:flex-row">
+        <div className="flex flex-col gap-2">
           <button
             type="button"
             onClick={() => addItem(product, selectedPack)}
@@ -89,7 +89,7 @@ export function ProductCard({ product }: ProductCardProps) {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 rounded-full border border-cacao/40 px-4 py-2.5 text-center text-sm font-medium text-cacao transition-colors hover:border-cacao hover:bg-crema"
+            className="flex flex-1 items-center justify-center rounded-full border border-cacao/40 px-4 py-2.5 text-center text-sm font-medium text-cacao transition-colors hover:border-cacao hover:bg-crema"
           >
             Consultar
           </a>

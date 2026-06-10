@@ -48,6 +48,17 @@ export function Footer() {
             Defensa al consumidor
           </a>
         </div>
+
+        <div className="mt-6 border-t border-blanco/10 pt-6 text-center text-xs text-blanco/50">
+          <a
+            href="https://pistaqio.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-blanco/80"
+          >
+            Creado por pistaqio.com
+          </a>
+        </div>
       </div>
     </footer>
   );

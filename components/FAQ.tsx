@@ -16,7 +16,7 @@ const faqs = [
   {
     question: "¿Hay pedido mínimo?",
     answer:
-      "Para delivery recomendamos un mínimo equivalente a 6 unidades. Para retiro o envíos, consultanos según tu pedido.",
+      "No hay pedido mínimo. Si querés que te enviemos tu pedido, luego de enviarlo por WhatsApp coordinamos la entrega.",
   },
   {
     question: "¿Cuánto duran los productos?",

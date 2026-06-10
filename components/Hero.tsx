@@ -13,7 +13,8 @@ export function Hero() {
           className="object-cover object-center lg:object-[70%_center]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-chocolate/90 via-chocolate/55 to-chocolate/20 lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-chocolate/85 via-chocolate/45 to-chocolate/10 lg:to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-chocolate/60 to-transparent" />
 
         <div className="relative mx-auto flex min-h-[85svh] max-w-6xl flex-col justify-center px-4 py-20 sm:px-6 lg:min-h-[90svh] lg:py-24">
           <div className="max-w-xl">
