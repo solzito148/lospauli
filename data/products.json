@@ -78,7 +78,25 @@
     "price": 12000,
     "category": "alfajores",
     "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/alfajor-maicena-6-1781059796107.jpg",
-    "unit": "Caja x6"
+    "unit": "Caja x6",
+    "packOptions": [
+      {
+        "units": 1,
+        "price": 2000
+      },
+      {
+        "units": 6,
+        "price": 12000
+      },
+      {
+        "units": 12,
+        "price": 7000
+      },
+      {
+        "units": 24,
+        "price": 19000
+      }
+    ]
   },
   {
     "id": "alfajor-choco-12",
