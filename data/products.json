@@ -70,5 +70,14 @@
     "category": "alfajores",
     "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/Alfajor Blanco-1781059601176.jpg",
     "unit": "Caja de 12"
+  },
+  {
+    "id": "alfajor-maicena-6",
+    "name": "Alfajor Maicena x6",
+    "description": "caja de 6 unidades",
+    "price": 12000,
+    "category": "alfajores",
+    "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/alfajor-maicena-6-1781059796107.jpg",
+    "unit": "Caja x6"
   }
 ]
