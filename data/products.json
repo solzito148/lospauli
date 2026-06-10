@@ -11,11 +11,11 @@
   {
     "id": "alfajor-maicena",
     "name": "Alfajor de Maicena",
-    "description": "Galletas de maicena, dulce de leche y coco rallado. Test modificación",
-    "price": 992,
+    "description": "Alfajor de almidón maíz relleno de dulce de leche.",
+    "price": 19000,
     "category": "alfajores",
     "image": "/products/alfajores-salvatore.png",
-    "unit": "unidad"
+    "unit": "Caja de 12"
   },
   {
     "id": "alfajor-triple",
