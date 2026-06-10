@@ -23,7 +23,7 @@
     "description": "Combina los 3 alfajores en las cantidades que quieras para completar tu caja.",
     "price": 19000,
     "category": "alfajores",
-    "image": "/products/alfajores-salvatore.png",
+    "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/alfajor-triple-1781060417866.jpg",
     "unit": "Mix 12 Unidades"
   },
   {
