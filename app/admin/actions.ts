@@ -16,7 +16,7 @@ import {
   uploadProductImage,
 } from "@/lib/github-store";
 import { slugify } from "@/lib/products";
-import type { Product, ProductCategory } from "@/lib/types";
+import type { PackOption, Product, ProductCategory } from "@/lib/types";
 
 const MAX_IMAGE_SIZE = 2 * 1024 * 1024;
 const ALLOWED_IMAGE_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
@@ -39,6 +39,39 @@ function validateImage(file: File): { error: string } | null {
   }
 
   return null;
+}
+
+function parsePackOptions(
+  formData: FormData,
+): { options: PackOption[] } | { error: string } {
+  const unitsList = formData.getAll("packUnits").map((value) => String(value).trim());
+  const pricesList = formData.getAll("packPrice").map((value) => String(value).trim());
+  const options: PackOption[] = [];
+
+  for (let i = 0; i < Math.max(unitsList.length, pricesList.length); i += 1) {
+    const unitsRaw = unitsList[i] ?? "";
+    const priceRaw = pricesList[i] ?? "";
+
+    if (!unitsRaw && !priceRaw) {
+      continue;
+    }
+
+    const units = Number(unitsRaw);
+    const price = Number(priceRaw);
+
+    if (!Number.isInteger(units) || units <= 0 || Number.isNaN(price) || price < 0) {
+      return { error: "Revisá las presentaciones: cantidad y precio deben ser números válidos." };
+    }
+
+    if (options.some((option) => option.units === units)) {
+      return { error: `Hay dos presentaciones con la misma cantidad (x${units}).` };
+    }
+
+    options.push({ units, price: Math.round(price) });
+  }
+
+  options.sort((a, b) => a.units - b.units);
+  return { options };
 }
 
 function getSafeRedirectPath(value: string): string {
@@ -111,6 +144,11 @@ export async function createProductAction(formData: FormData) {
       return imageError;
     }
 
+    const packResult = parsePackOptions(formData);
+    if ("error" in packResult) {
+      return packResult;
+    }
+
     const products = await getMutableProductsFromStore();
     if (products.some((product) => product.id === id)) {
       return { error: "Ya existe un producto con ese identificador." };
@@ -126,6 +164,7 @@ export async function createProductAction(formData: FormData) {
       category,
       image: imagePath,
       unit,
+      ...(packResult.options.length > 0 ? { packOptions: packResult.options } : {}),
     };
 
     await saveProducts([...products, newProduct]);
@@ -163,6 +202,11 @@ export async function updateProductAction(formData: FormData) {
       return { error: "Categoría inválida." };
     }
 
+    const packResult = parsePackOptions(formData);
+    if ("error" in packResult) {
+      return packResult;
+    }
+
     const products = await getMutableProductsFromStore();
     const index = products.findIndex((product) => product.id === id);
 
@@ -187,6 +231,7 @@ export async function updateProductAction(formData: FormData) {
       category,
       image: imagePath,
       unit,
+      ...(packResult.options.length > 0 ? { packOptions: packResult.options } : {}),
     };
 
     await saveProducts(products);

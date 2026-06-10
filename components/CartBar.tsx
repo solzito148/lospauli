@@ -50,46 +50,56 @@ export function CartBar() {
               Tu pedido
             </p>
             <ul className="space-y-2">
-              {items.map((item) => (
-                <li
-                  key={item.product.id}
-                  className="flex flex-col gap-2 border-b border-dulce/20 pb-2 text-sm last:border-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between"
-                >
-                  <div className="min-w-0 flex-1">
-                    <p className="font-medium text-chocolate">{item.product.name}</p>
-                    <p className="text-xs text-cacao/70">
-                      {formatPrice(item.product.price)} c/u ·{" "}
-                      {formatPrice(item.product.price * item.quantity)}
-                    </p>
-                  </div>
-                  <div className="flex shrink-0 items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-                      className="flex h-8 w-8 items-center justify-center rounded-full border border-dulce/50 text-cacao transition-colors hover:bg-blanco"
-                      aria-label={`Quitar uno de ${item.product.name}`}
-                    >
-                      −
-                    </button>
-                    <span className="w-6 text-center font-medium">{item.quantity}</span>
-                    <button
-                      type="button"
-                      onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-                      className="flex h-8 w-8 items-center justify-center rounded-full border border-dulce/50 text-cacao transition-colors hover:bg-blanco"
-                      aria-label={`Agregar uno de ${item.product.name}`}
-                    >
-                      +
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => removeItem(item.product.id)}
-                      className="ml-1 text-xs text-cacao/70 underline transition-colors hover:text-chocolate"
-                    >
-                      Quitar
-                    </button>
-                  </div>
-                </li>
-              ))}
+              {items.map((item) => {
+                const lineName = item.pack
+                  ? `${item.product.name} (x${item.pack.units})`
+                  : item.product.name;
+                const unitPrice = item.pack?.price ?? item.product.price;
+                return (
+                  <li
+                    key={`${item.product.id}-${item.pack?.units ?? "u"}`}
+                    className="flex flex-col gap-2 border-b border-dulce/20 pb-2 text-sm last:border-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between"
+                  >
+                    <div className="min-w-0 flex-1">
+                      <p className="font-medium text-chocolate">{lineName}</p>
+                      <p className="text-xs text-cacao/70">
+                        {formatPrice(unitPrice)} c/u ·{" "}
+                        {formatPrice(unitPrice * item.quantity)}
+                      </p>
+                    </div>
+                    <div className="flex shrink-0 items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          updateQuantity(item.product.id, item.quantity - 1, item.pack?.units)
+                        }
+                        className="flex h-8 w-8 items-center justify-center rounded-full border border-dulce/50 text-cacao transition-colors hover:bg-blanco"
+                        aria-label={`Quitar uno de ${lineName}`}
+                      >
+                        −
+                      </button>
+                      <span className="w-6 text-center font-medium">{item.quantity}</span>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          updateQuantity(item.product.id, item.quantity + 1, item.pack?.units)
+                        }
+                        className="flex h-8 w-8 items-center justify-center rounded-full border border-dulce/50 text-cacao transition-colors hover:bg-blanco"
+                        aria-label={`Agregar uno de ${lineName}`}
+                      >
+                        +
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => removeItem(item.product.id, item.pack?.units)}
+                        className="ml-1 text-xs text-cacao/70 underline transition-colors hover:text-chocolate"
+                      >
+                        Quitar
+                      </button>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         )}

@@ -1,12 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import type { Product } from "@/lib/types";
 import { createProductAction, updateProductAction } from "@/app/admin/actions";
 
 interface ProductFormProps {
   product?: Product;
+}
+
+interface PackRow {
+  key: number;
+  units: string;
+  price: string;
 }
 
 const initialState = { error: "" };
@@ -21,6 +27,31 @@ export function ProductForm({ product }: ProductFormProps) {
     },
     initialState,
   );
+
+  const [packRows, setPackRows] = useState<PackRow[]>(
+    (product?.packOptions ?? []).map((option, index) => ({
+      key: index,
+      units: String(option.units),
+      price: String(option.price),
+    })),
+  );
+
+  const addPackRow = () => {
+    setPackRows((rows) => [
+      ...rows,
+      { key: Date.now(), units: "", price: "" },
+    ]);
+  };
+
+  const removePackRow = (key: number) => {
+    setPackRows((rows) => rows.filter((row) => row.key !== key));
+  };
+
+  const updatePackRow = (key: number, field: "units" | "price", value: string) => {
+    setPackRows((rows) =>
+      rows.map((row) => (row.key === key ? { ...row, [field]: value } : row)),
+    );
+  };
 
   return (
     <form action={formAction} className="space-y-5 rounded-2xl border border-dulce/30 bg-blanco p-6 shadow-sm">
@@ -98,6 +129,65 @@ export function ProductForm({ product }: ProductFormProps) {
             className="w-full rounded-xl border border-dulce/40 bg-crema/30 px-4 py-2.5 text-sm text-chocolate outline-none focus:border-cacao"
           />
         </div>
+      </div>
+
+      <div>
+        <span className="mb-1 block text-sm font-medium text-chocolate">
+          Presentaciones (opcional)
+        </span>
+        <p className="mb-2 text-xs text-cacao/70">
+          Para vender por caja o pack (ej. x6, x12), agregá cada presentación con su precio.
+          El cliente las va a elegir en un desplegable. Si no agregás ninguna, se vende por unidad
+          con el precio de arriba.
+        </p>
+
+        <div className="space-y-2">
+          {packRows.map((row) => (
+            <div key={row.key} className="flex items-center gap-2">
+              <span className="text-sm text-cacao">x</span>
+              <input
+                type="number"
+                name="packUnits"
+                min={1}
+                step={1}
+                required
+                value={row.units}
+                onChange={(event) => updatePackRow(row.key, "units", event.target.value)}
+                placeholder="6"
+                aria-label="Cantidad de unidades"
+                className="w-20 rounded-xl border border-dulce/40 bg-crema/30 px-3 py-2 text-sm text-chocolate outline-none focus:border-cacao"
+              />
+              <span className="text-sm text-cacao">a $</span>
+              <input
+                type="number"
+                name="packPrice"
+                min={0}
+                step={1}
+                required
+                value={row.price}
+                onChange={(event) => updatePackRow(row.key, "price", event.target.value)}
+                placeholder="4500"
+                aria-label="Precio de la presentación"
+                className="w-28 rounded-xl border border-dulce/40 bg-crema/30 px-3 py-2 text-sm text-chocolate outline-none focus:border-cacao"
+              />
+              <button
+                type="button"
+                onClick={() => removePackRow(row.key)}
+                className="text-xs text-cacao/70 underline transition-colors hover:text-chocolate"
+              >
+                Quitar
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={addPackRow}
+          className="mt-2 rounded-full border border-cacao/40 px-4 py-1.5 text-xs font-medium text-cacao transition-colors hover:bg-crema"
+        >
+          + Agregar presentación
+        </button>
       </div>
 
       <div>

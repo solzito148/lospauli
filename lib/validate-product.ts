@@ -1,7 +1,24 @@
-import type { CartItem, Product, ProductCategory } from "./types";
+import type { CartItem, PackOption, Product, ProductCategory } from "./types";
 
 function isProductCategory(value: unknown): value is ProductCategory {
   return value === "alfajores" || value === "conitos";
+}
+
+export function isValidPackOption(value: unknown): value is PackOption {
+  if (!value || typeof value !== "object") {
+    return false;
+  }
+
+  const pack = value as Record<string, unknown>;
+
+  return (
+    typeof pack.units === "number" &&
+    Number.isInteger(pack.units) &&
+    pack.units > 0 &&
+    typeof pack.price === "number" &&
+    Number.isFinite(pack.price) &&
+    pack.price >= 0
+  );
 }
 
 export function isValidProduct(value: unknown): value is Product {
@@ -10,6 +27,11 @@ export function isValidProduct(value: unknown): value is Product {
   }
 
   const product = value as Record<string, unknown>;
+
+  const packOptionsValid =
+    product.packOptions === undefined ||
+    (Array.isArray(product.packOptions) &&
+      product.packOptions.every(isValidPackOption));
 
   return (
     typeof product.id === "string" &&
@@ -21,7 +43,8 @@ export function isValidProduct(value: unknown): value is Product {
     product.price >= 0 &&
     isProductCategory(product.category) &&
     typeof product.image === "string" &&
-    typeof product.unit === "string"
+    typeof product.unit === "string" &&
+    packOptionsValid
   );
 }
 
@@ -48,7 +71,8 @@ export function parseCartItems(data: unknown): CartItem[] {
       typeof cartItem.quantity === "number" &&
       Number.isInteger(cartItem.quantity) &&
       cartItem.quantity > 0 &&
-      isValidProduct(cartItem.product)
+      isValidProduct(cartItem.product) &&
+      (cartItem.pack === undefined || isValidPackOption(cartItem.pack))
     );
   });
 }
