@@ -42,7 +42,13 @@
     "price": 21000,
     "category": "conitos",
     "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/conito-dulce-de-leche-nuez-1781060721716.jpg",
-    "unit": "Caja de 12"
+    "unit": "Caja de 12",
+    "packOptions": [
+      {
+        "units": 6,
+        "price": 11600
+      }
+    ]
   },
   {
     "id": "conito-dulce-de-leche-plateado",
