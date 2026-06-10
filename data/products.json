@@ -29,11 +29,11 @@
   {
     "id": "conito-dulce-de-leche",
     "name": "Conito Dulce de Leche",
-    "description": "Relleno con dulce de leche. Envoltorio dorado.",
-    "price": 650,
+    "description": "Conito relleno de dulce de leche con baño de chocolate negro",
+    "price": 20000,
     "category": "conitos",
     "image": "/products/conito-dulce-de-leche.png",
-    "unit": "68 g"
+    "unit": "Caja de 12"
   },
   {
     "id": "conito-dulce-de-leche-nuez",
