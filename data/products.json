@@ -100,11 +100,29 @@
   },
   {
     "id": "alfajor-choco-12",
-    "name": "Alfajor chocolate x12",
-    "description": "Caja x 12 alfajores de chocolate",
+    "name": "Alfajor chocolate",
+    "description": "Alfajores de chocolate con leche y rellenos de dulce de leche",
     "price": 19000,
     "category": "alfajores",
     "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/alfajor-choco-12-1781060307526.webp",
-    "unit": "Caja"
+    "unit": "Caja",
+    "packOptions": [
+      {
+        "units": 1,
+        "price": 2500
+      },
+      {
+        "units": 3,
+        "price": 5000
+      },
+      {
+        "units": 6,
+        "price": 9000
+      },
+      {
+        "units": 12,
+        "price": 17000
+      }
+    ]
   }
 ]
