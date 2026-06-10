@@ -19,12 +19,12 @@
   },
   {
     "id": "alfajor-triple",
-    "name": "Alfajor Triple",
-    "description": "Triple capa de dulce de leche con baño de chocolate.",
-    "price": 1100,
+    "name": "Mix de Alfajores",
+    "description": "Combina los 3 alfajores en las cantidades que quieras para completar tu caja.",
+    "price": 19000,
     "category": "alfajores",
     "image": "/products/alfajores-salvatore.png",
-    "unit": "unidad"
+    "unit": "Mix 12 Unidades"
   },
   {
     "id": "conito-dulce-de-leche",
