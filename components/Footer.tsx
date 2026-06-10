@@ -49,12 +49,15 @@ export function Footer() {
           </a>
         </div>
 
-        <div className="mt-6 border-t border-blanco/10 pt-6 text-center text-xs text-blanco/50">
+        <div className="mt-8 text-center">
+          <span aria-hidden="true" className="block text-sm text-dulce/60">
+            ✦
+          </span>
           <a
             href="https://pistaqio.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-blanco/80"
+            className="mt-2 inline-block text-xs uppercase tracking-[0.2em] text-blanco/40 transition-colors hover:text-dulce"
           >
             Creado por pistaqio.com
           </a>
