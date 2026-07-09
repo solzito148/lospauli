@@ -117,18 +117,18 @@
     "id": "conito-surtido",
     "name": "Conito Chocolate Blanco con Nuez",
     "description": "Conitos bañados con chocolate blanco rellenos con dulce de leche y nuez.",
-    "price": 21000,
+    "price": 21900,
     "category": "conitos",
     "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/conito-surtido-1781063390341.jpg",
     "unit": "Caja",
     "packOptions": [
       {
         "units": 6,
-        "price": 11600
+        "price": 12500
       },
       {
         "units": 12,
-        "price": 21000
+        "price": 21900
       }
     ]
   },
