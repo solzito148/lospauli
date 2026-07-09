@@ -22,18 +22,18 @@
     "id": "alfajor-maicena",
     "name": "Alfajor de Maicena",
     "description": "Alfajor de almidón de maíz relleno de dulce de leche.",
-    "price": 19000,
+    "price": 20000,
     "category": "alfajores",
     "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/alfajor-maicena-1781060041817.jpg",
     "unit": "Caja",
     "packOptions": [
       {
         "units": 6,
-        "price": 10500
+        "price": 11500
       },
       {
         "units": 12,
-        "price": 19000
+        "price": 20000
       }
     ]
   },
