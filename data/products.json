@@ -132,18 +132,18 @@
     "id": "alfajor-maicena-6",
     "name": "Alfajor Blanco",
     "description": "Alfajor relleno con dulce de leche con baño de chocolate blanco.",
-    "price": 19000,
+    "price": 20000,
     "category": "alfajores",
     "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/alfajor-maicena-6-1781061499508.jpg",
     "unit": "caja",
     "packOptions": [
       {
         "units": 6,
-        "price": 10500
+        "price": 11500
       },
       {
         "units": 12,
-        "price": 19000
+        "price": 20000
       }
     ]
   },
