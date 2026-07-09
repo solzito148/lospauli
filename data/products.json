@@ -98,14 +98,18 @@
     "id": "conito-dulce-de-leche-plateado",
     "name": "Conito Chocolate Blanco",
     "description": "Conitos bañados con chocolate blanco rellenos con dulce de leche.",
-    "price": 20000,
+    "price": 21900,
     "category": "conitos",
     "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/conito-dulce-de-leche-plateado-1781064508365.jpg",
     "unit": "Caja",
     "packOptions": [
       {
         "units": 6,
-        "price": 11000
+        "price": 12500
+      },
+      {
+        "units": 12,
+        "price": 2190
       }
     ]
   },
