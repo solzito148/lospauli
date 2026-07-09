@@ -207,5 +207,24 @@
         "price": 23000
       }
     ]
+  },
+  {
+    "id": "Experiencia 👑 Box Salvatore Premium",
+    "name": "Experiencia 👑 Box Salvatore Premium",
+    "description": "Para quienes quieren descubrir la experiencia de toda la colección o hacer un regalo. Agregas al pedido tu caja Box Salvatore Premium, con un click en \"enviar pedido\" y te redirigirá automáticamente a nuestro WhatsApp para que armemos tu 👑 Box Salvatore Premium, y coordinemos el pago y la entrega. ¡Y ya, tu experiencia estará lista! (caja con las 4 variantes de conitos y las 3 de alfajores)",
+    "price": 24900,
+    "category": "conitos",
+    "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/Experiencia 👑 Box Salvatore Premium-1783637587929.png",
+    "unit": "unidad",
+    "packOptions": [
+      {
+        "units": 7,
+        "price": 14900
+      },
+      {
+        "units": 14,
+        "price": 24900
+      }
+    ]
   }
 ]
