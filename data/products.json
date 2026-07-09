@@ -169,24 +169,5 @@
         "price": 21900
       }
     ]
-  },
-  {
-    "id": "⭐ Box Salvatore (7 variedades)",
-    "name": "⭐ Box Salvatore Premium",
-    "description": "⭐ Box Salvatore (7 variedades)",
-    "price": 24900,
-    "category": "alfajores",
-    "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/⭐ Box Salvatore (7 variedades)-1783632898670.png",
-    "unit": "unidad",
-    "packOptions": [
-      {
-        "units": 7,
-        "price": 14900
-      },
-      {
-        "units": 14,
-        "price": 24900
-      }
-    ]
   }
 ]
