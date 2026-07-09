@@ -169,5 +169,24 @@
         "price": 21900
       }
     ]
+  },
+  {
+    "id": "👑 Box Salvatore Premium",
+    "name": "Experiencia 👑 Box Salvatore Premium",
+    "description": "Para quienes quieren descubrir la experiencia de toda la colección o hacer un regalo. \r\nAgregas al pedido tu caja Box Salvatore Premium, con un click en \"enviar pedido\" y  te redirigirá automáticamente a nuestro WhatsApp para que armemos tu 👑 Box Salvatore Premium, y coordinemos el pago y la entrega. ¡Y ya, tu experiencia estará lista!",
+    "price": 24900,
+    "category": "alfajores",
+    "image": "https://raw.githubusercontent.com/solzito148/lospauli/main/public/products/👑 Box Salvatore Premium-1783633457278.png",
+    "unit": "unidad",
+    "packOptions": [
+      {
+        "units": 7,
+        "price": 14900
+      },
+      {
+        "units": 14,
+        "price": 24900
+      }
+    ]
   }
 ]
